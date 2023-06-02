@@ -10,7 +10,7 @@
 
 	$:folders = []
 
-	const formValues = {
+	let formValues = {
 		name: '',
 		type: '',
 		folder: 'Root'
@@ -78,6 +78,10 @@
 		folders = folderNames
 	}
 
+	function cancel() {
+		formValues = {};
+	}
+
 	let listItemsVisibility = new Array(fileStores.length).fill("nested");
 	let caretDownVisibility = new Array(fileStores.length).fill("caret");
 
@@ -130,6 +134,7 @@
 		</div>
 		<div class="row">
 			<input type="submit" value="Add"/>
+			<input type="reset" value="Cancel"/>
 		</div>
 		{#if sameFileName}
 			<p><small style="color: red">Same file/folder name cannot exist at same path</small></p>
@@ -233,11 +238,11 @@ input[type=text], select {
   border-radius: 4px;
   resize: vertical;
 }
-input[type=submit] {
+input[type=submit], input[type = reset] {
   background-color: #04AA6D;
   color: white;
   padding: 12px 20px;
-  margin: 20px 0px;
+  margin: 20px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -246,7 +251,6 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
-
 
 * {
   margin: 0;
